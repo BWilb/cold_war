@@ -14,11 +14,13 @@ class Avatar:
         #power building characteristics
         self.partisan_list = []
         self.weapons_list = []
-        #location characteristics
-        self.nation = None
         #stats
         self.kills = 0
         self.partisans_killed = 0
+        #for election purposes
+        self.year = 1960
+        #random events
+        self.randomness = 0
 
 class Partisan:
     def __init__(self):

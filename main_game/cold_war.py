@@ -1,11 +1,23 @@
 from avatar import avatar_file
 from nato_fronts import us_front
+from nato_fronts import dutch_front
+
+#this entire file steers where the game and your path
 
 def main():
     avar = avatar_file.Avatar()
     print("Hello " + avar.name + ".\nYou have been resurrected in the year 1960. The Cold War has been"
                                  " underway for 15 years now.\nTensions between NATO, Warsaw Pact, and Shanghai Pact"
                                  "are at an all time high.\nYou can choose any side and either help them or fuck with them.\n")
+    #beginning of
+    name_change = input("Your name is currently " + avar.name + ". Would you like to change it?: ")
+    if name_change.lower() == "yes":
+        avar.name = input("Good choice. What would you like to change your name to?: ")
+        print(avar.name + " it is")
+    elif name_change.lower() == "no":
+        print("good luck")
+    else:
+        print("This is a yes or no question. Don't be stupid.")
 
     nato = ["1. Britain", "2. France", "3. West Germany", "4. Belgium", "5. Netherlands",
             "6. Italy", "7. Turkey", "8. United States"]
@@ -35,7 +47,7 @@ def main():
             #belgian_front.main()
             print("option not available")
         elif user_choice == 5:
-            #dutch_front.main()
+            dutch_front.main(avar)
             print("option not available")
         elif user_choice == 6:
             #italian_front.main()
@@ -44,7 +56,7 @@ def main():
             #turkish_front.main()
             print("option not available")
         elif user_choice == 8:
-            us_front.main()
+            us_front.main(avar)
 
     elif side.lower() == "warsaw pact":
         print("\nAvailable Warsaw Pact nations")

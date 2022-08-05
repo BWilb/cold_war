@@ -5,7 +5,7 @@ from nato_fronts import dutch_front
 
 #===============================================================================
 #main piece of game
-def defection(avar, us):
+def defection(avar):
     print("You chose to defect")
     nations = ["1. Britain(in progress)", "2. France(in progress)", "3. West Germany(in progress)", "4. Belgium(in progress)",
                "5. Netherlands",
@@ -21,7 +21,7 @@ def defection(avar, us):
 
     new_nation = input("Which nation do you choose? 1-19: ")
     if new_nation == 5:
-        dutch_front.main()
+        dutch_front.main(avar)
 
 
 def begin_rebellion(avar):
@@ -116,8 +116,9 @@ def us_front(avar, us):
                   "8. north west\n"]
 
     while not avar.alive:
+        print(f"\nIt is {us.year}.")
         us.year += 1
-        print("\n" + us.cities_list[current_city].description)
+        print(us.cities_list[current_city].description)
 
         for i in range(len(choices)):
             print(choices[i])
@@ -188,7 +189,7 @@ def us_front(avar, us):
             avar.hunger += random.randrange(0, 5)
 
         elif first_choice == 2:
-            defection(avar, us)
+            defection(avar)
         elif first_choice == 3:
             begin_rebellion(avar)
         elif first_choice == 4:
@@ -240,12 +241,10 @@ def initial_stats(us):
     for i in range(len(us.cities_list)):
         us.population += us.cities_list[i].population
 
-def main():
-    avar = avatar_file.Avatar()
+def main(avar):
     us = united_states.UnitedStates()
     us.cities_list = united_states.us_locations()
     initial_stats(us)
-    print(us.elections[us.election][1])
 
     us_front(avar, us)
 if __name__ == '__main__':

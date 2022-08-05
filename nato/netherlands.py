@@ -1,10 +1,16 @@
 class Netherlands:
     def __init__(self):
+        #individual characteristics of netherlands
         self.leader = "Juliana"
         self.troop_list = []
         self.cities_list = []
         self.current_city = 0
+        #bigger picture characteristics
         self.population = 0
+        self.stability = 1.00
+        self.senate_members = 150
+        self.year = 1960
+        self.monarchs = ["Beatrix", "William-Alexander"]
 
 class DutchSoldier:
     def __init__(self):

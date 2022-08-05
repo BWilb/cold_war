@@ -28,6 +28,15 @@ def view_stats(avar, dutch):
     print(f"You have {avar.thirst} in thirst")
     print(f"The nation you currently reside in has a population of {dutch.population}")
 
+def dutch_monarchical_elections(dutch):
+    dutch.year += 1
+    i = 0
+    if(dutch.year % 20 == 0):
+        print("A new monarch has been selected...too bad you weren't able to vote them in")
+        dutch.leader = dutch.monarchs[i]
+        i += 1
+        print(dutch.leader + " is now leader of the netherlands")
+
 #main chunk of game
 def dutch_front(avar, dutch):
     current_city = 0
@@ -50,6 +59,7 @@ def dutch_front(avar, dutch):
                   "8. north west\n"]
 
     while not avar.alive:
+        print(f"It is {dutch.year}.")
         print("\n" + dutch.cities_list[current_city].description)
 
         for i in range(len(choices)):
@@ -137,22 +147,21 @@ def dutch_front(avar, dutch):
 
         for i in range(0, len(dutch.cities_list)):
             choice = random.randrange(0, 3)
-            population = 0
-            print(choice)
             if choice == 0:
                 population = int(
-                    dutch.cities_list[i].population_growth * dutch.cities_list[i].population)
+                    dutch.cities_list[i].growth * dutch.cities_list[i].population)
                 dutch.cities_list[i].population += population
                 dutch.population += population
                 print(dutch.cities_list[i].description)
             elif choice == 1:
                 population = -int(
-                    dutch.cities_list[i].population_growth * dutch.cities_list[i].population)
+                    dutch.cities_list[i].growth * dutch.cities_list[i].population)
                 dutch.cities_list[i].population += population
                 dutch.population += population
             elif choice == 2:
                 dutch.cities_list[i].population = dutch.cities_list[i].population
 
+        dutch_monarchical_elections(dutch)
 #===============================================================================
 #beginning of dutch front
 
@@ -163,8 +172,7 @@ def initial_stats(dutch):
     for i in range(len(dutch.cities_list)):
         dutch.population += dutch.cities_list[i].population
 
-def main():
-    avar = avatar_file.Avatar()
+def main(avar):
     dutch = netherlands.Netherlands()
     dutch.cities_list = netherlands.dutch_cities()
     initial_stats(dutch)
