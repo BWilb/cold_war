@@ -1,6 +1,7 @@
 from avatar import avatar_file
 from nato_fronts import us_front
 from nato_fronts import dutch_front
+from shanghai_pact_fronts import dprk_front
 
 #this entire file steers where the game and your path
 
@@ -85,13 +86,13 @@ def main():
     elif side.lower() == "Shanghai pact":
         print("\nAvailable shanghai Pact nations")
         print("None available at current time")
-        #for i in range(len(chinese_pact)):
-        #    print(chinese_pact[i])
-        #user_choice = int(input("which nation do you choose?: "))
+        for i in range(len(shanghai_pact)):
+            print(shanghai_pact[i])
+        user_choice = int(input("which nation do you choose?: "))
         #if user_choice == 1:
         #    chinese_front.main()
-        #elif user_choice == 2:
-        #    dprk_front.main()
+        if user_choice == 2:
+            dprk_front.main()
         #elif user_choice == 3:
         #    mongolian_front.main()
         #elif user_choice == 4:
