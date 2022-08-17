@@ -42,6 +42,13 @@ def drink(avar):
 def change_name(avar):
     print("still a work in progress")
 
+def collect_partisans(avar):
+    chance = random.randrange(0, 500)
+    if chance % 3 == 2:
+
+
+    #for i in (0, random.randrange(50, 500)):
+        print("hi")
 def view_stats(avar, us):
     print(f"You have killed {avar.kills} people")
     print(f"Your current name is " + avar.name)
@@ -203,6 +210,7 @@ def us_front(avar, us):
         elif first_choice == 8:
             view_stats(avar, us)
 
+        collect_partisans(avar)
         for i in range(0, len(us.cities_list)):
             choice = random.randrange(0, 3)
             if choice == 0:
@@ -223,7 +231,7 @@ def us_front(avar, us):
             if us.stablility < 0.2:
                 print("The United States has become too unstable of a nation.\n"
                       "Time to defect to a different nation!!!")
-                defection(avar, us)
+                defection(avar)
 
 #===============================================================================
 #initial piece of american front
@@ -242,10 +250,12 @@ def initial_stats(us):
         us.population += us.cities_list[i].population
 
 def main(avar):
+
     us = united_states.UnitedStates()
     us.cities_list = united_states.us_locations()
     initial_stats(us)
 
     us_front(avar, us)
+
 if __name__ == '__main__':
     main()

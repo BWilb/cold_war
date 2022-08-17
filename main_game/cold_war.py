@@ -114,6 +114,7 @@ def main():
             question_one = True
         else:
             print("How did you mess this up. There's only two options!!!")
+main()
 
 if __name__ == '__main__':
     main()

@@ -61,7 +61,7 @@ def random_events(avar, korea):
 
     if chance % 5 == 3:
         print("You stumbled across a group of people that may be willing to listen to a speech.")
-        choice = input("do you accept?: ")
+        choice = input("\ndo you accept?: ")
         if choice.lower() == "yes":
             discovery = random.randrange(1, 10)
             if discovery % 10 == 3:
@@ -72,8 +72,16 @@ def random_events(avar, korea):
                     follower = avatar_file.Partisan()
                     avar.partisan_list.append(follower)
     elif chance % 10 == 5:
-        print("You stepped on a landmine and blew up")
+        print("You stepped on a landmine and fucking died")
         avar.alive = True
+
+    elif chance % 20 == 3:
+        accept = input("You came across a tank. Do you want to steal it?: ")
+        if accept.lower() == "yes":
+            avar.weapons_list.append("tank")
+            disloyalty(avar, korea, chance)
+        else:
+            print("you made a wise decision")
 
 def view_stats(avar, korea):
     print(f"You have killed {avar.kills} people")
@@ -193,6 +201,21 @@ def northkorean_front(avar, korea):
             view_stats(avar, korea)
 
         random_events(avar, korea)
+
+        for i in range(0, len(korea.cities_list)):
+            choice = random.randrange(0, 3)
+            if choice == 0:
+                population = int(
+                    korea.cities_list[i].population_growth * korea.cities_list[i].population)
+                korea.cities_list[i].population += population
+                korea.population += population
+            elif choice == 1:
+                population = -int(
+                    korea.cities_list[i].population_growth * korea.cities_list[i].population)
+                korea.cities_list[i].population += population
+                korea.population += population
+            elif choice == 2:
+                korea.cities_list[i].population = korea.cities_list[i].population
 
 def main(avar):
     korea = north_korea.NorthKorea()
