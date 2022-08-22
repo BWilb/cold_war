@@ -92,11 +92,20 @@ class ColdWar(arcade.Window):
         arcade.draw_lrtb_rectangle_filled(0,
                                           1920,
                                           1100,
-                                          1000,
+                                          931,
                                           arcade.color.BLACK)
 
-        arcade.draw_text(f"Year {self.year}", 720, 1031, arcade.color.BRONZE, 20)
-        self.avatar.draw()
+        arcade.draw_text(f"Year {self.year}",
+                         720,
+                         931,
+                         arcade.color.BRONZE,
+                         20)
+
+        arcade.draw_text("Current name: " + self.avatar.current_name,
+                         640,
+                         1031,
+                         arcade.color.BRONZE,
+                         20)
 
     def update(self, delta_time: float):
         self.avatar.update()
@@ -110,6 +119,19 @@ class ColdWar(arcade.Window):
             self.avatar.change_y = movment
         elif key == arcade.key.DOWN:
             self.avatar.change_y = -movment
+        elif key == arcade.key.SPACE:
+            self.avatar.current_name = input("What would you like to change your name to?: ")
+            self.avatar.draw()
+
+    def on_key_release(self, key: int, modifiers: int):
+        if key == arcade.key.RIGHT:
+            self.avatar.change_x = 0
+        elif key == arcade.key.LEFT:
+            self.avatar.change_x = 0
+        elif key == arcade.key.UP:
+            self.avatar.change_y = 0
+        elif key == arcade.key.DOWN:
+            self.avatar.change_y = 0
 
 
 def main():
