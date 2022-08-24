@@ -138,4 +138,5 @@ def main():
     cold = ColdWar(1920, 1100, "Cold War")
     arcade.run()
 
-main()
+if __name__ == '__main__':
+    main()

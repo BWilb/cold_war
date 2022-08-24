@@ -2,12 +2,13 @@ from avatar import avatar_file
 from nato_fronts import us_front
 from nato_fronts import dutch_front
 from shanghai_pact_fronts import dprk_front
+from sprites import sprite_version
 
 #this entire file steers where the game and your path
 
 def main():
     question_one = False
-    while question_one:
+    while not question_one:
 
         user_response_one = input("Would you like to play the text or sprite version of this game?: ")
         if user_response_one.lower() == "text":
@@ -110,8 +111,8 @@ def main():
 
         elif user_response_one.lower() == "sprite":
             print("you chose the sprite version")
-
-            question_one = True
+            sprite_version.main()
+            question_one = False
         else:
             print("How did you mess this up. There's only two options!!!")
 main()
